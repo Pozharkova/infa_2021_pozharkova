@@ -70,19 +70,19 @@ def move_figures():
         if x[i] - r[i] < 0:
             x[i] = r[i]
             dx[i] = - dx[i]
-            dy[i] = randint(-5, 5) # случайное отражение, иначе = -dy[i]
+            dy[i] = randint(-5, 5) 
         if x[i] + r[i] > screen_width:
             x[i] = screen_width - r[i]
             dx[i] = - dx[i]
-            dy[i] = randint(-5, 5) # случайное отражение, иначе = -dy[i]            
+            dy[i] = randint(-5, 5)           
         if y[i] - r[i] < 0:
             y[i] = r[i]
             dy[i] = - dy[i]
-            dx[i] = randint(-5, 5) # случайное отражение, иначе = -dx[i]
+            dx[i] = randint(-5, 5)
         if y[i] + r[i] > screen_height:
             y[i] = screen_height - r[i]
             dy[i] = - dy[i]
-            dx[i] = randint(-5, 5) # случайное отражение, иначе = -dx[i]   
+            dx[i] = randint(-5, 5)    
 
 def draw_cross(x, y, width, angle, color):
     '''рисует крестообразный зрачок'''
@@ -160,7 +160,7 @@ def click(event):
                 destroy_figure(i)
                 i -= 1
         i += 1
-    if score < 0: # если очки отрицательные, то - обнуляются
+    if score < 0: 
         score = 0
 
 def draw_score():
@@ -188,9 +188,7 @@ def draw_player_name():
 
 def read_scores(line):
     '''считывает имена игроков и результаты'''
-    # преобразование строки с разделителем табуляции в две строки: name и res
     name, res = line.split('\t')
-    # удаление последнего символа в строке результата - \n (переход на следующую строку)
     res = res[:-1]
     return name, res
     
@@ -199,7 +197,7 @@ pygame.display.update()
 # считывание результатов игроков
 if path.exists('scores.txt'): #если файл с результатами существует
     f = open('scores.txt', 'r')
-    # построчное считывание из файл с разделением на имя/результат и занесение в список
+    
     score_table = [read_scores(line) for line in f]
     f.close()
     
@@ -251,14 +249,13 @@ while not finished:
     pygame.display.update()
     screen.fill(BLACK)
 
-# Добавление результата завершенной игры ко всем результатам
 score_table.append((player_name, str(score)))
-# сортировка таблицы результатов по значению результатов в формате int
+
 score_table = sorted(score_table, key = lambda elem: int(elem[1]), reverse = True)
 # Запись 
 f = open('scores.txt', 'w')
 for s in score_table:
-    # объединение кортежа имя/результат в одну строку с разделителем табуляции и добавление в конец перехода на следующую строку
+  
     f.write('\t'.join(s)+'\n')   
 f.close()
 pygame.quit()
