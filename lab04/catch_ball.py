@@ -197,7 +197,6 @@ pygame.display.update()
 # считывание результатов игроков
 if path.exists('scores.txt'): #если файл с результатами существует
     f = open('scores.txt', 'r')
-    
     score_table = [read_scores(line) for line in f]
     f.close()
     
@@ -250,12 +249,10 @@ while not finished:
     screen.fill(BLACK)
 
 score_table.append((player_name, str(score)))
-
 score_table = sorted(score_table, key = lambda elem: int(elem[1]), reverse = True)
 # Запись 
 f = open('scores.txt', 'w')
 for s in score_table:
-  
     f.write('\t'.join(s)+'\n')   
 f.close()
 pygame.quit()
