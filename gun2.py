@@ -352,7 +352,7 @@ class rand_target(target):
 class drop_target(target):
     def __init__(self):
         super().__init__()
-        self.color = 'blue'
+        self.color = 'black'
 
    
     def new_target(self):
